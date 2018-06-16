@@ -1,4 +1,8 @@
 """
+Simple scirpt for killing processes.
+
+usage:
+    python process_killer.py
 """
 import os
 import signal
@@ -7,6 +11,13 @@ import sys
 
 
 def get_processes_by_username(username):
+    """Print info about all processes belongs to the given user
+    Args:
+        username(str): user name
+    Returns:
+        None
+    """
+
     output = ''
     try:
         ps = subprocess.Popen(('ps', '-ef'), stdout=subprocess.PIPE)
@@ -19,6 +30,12 @@ def get_processes_by_username(username):
 
 
 def kill_process(pid):
+    """kill process by its pid
+    Args:
+        pid(int): process id
+    Returns:
+        int: 0 for success, 1 for OSError
+    """
     try:
         os.kill(pid, signal.SIGTERM)
         return 0
